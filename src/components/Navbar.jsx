@@ -8,7 +8,7 @@ export default function Navbar() {
                         onClick={() => location.reload()}
                         className="flex items-center"
                     >
-                        <span className="self-center text-2xl font-bold italic whitespace-nowrap dark:text-white">
+                        <span className="cursor-pointer self-center text-2xl font-bold italic whitespace-nowrap dark:text-white">
                             FAKE_MRKT
                         </span>
                     </a>
