@@ -4,6 +4,7 @@ import Home from "./components/Home";
 import Electronics from "./components/Electronics";
 import Jewelry from "./components/Jewelry";
 import MClothing from "./components/MClothing";
+import Cart from "./components/Cart";
 import WClothing from "./components/WClothing";
 
 const Router = () => {
@@ -17,6 +18,7 @@ const Router = () => {
                 { path: "jewelry", element: <Jewelry /> },
                 { path: "m-clothing", element: <MClothing /> },
                 { path: "w-clothing", element: <WClothing /> },
+                { path: "cart", element: <Cart /> },
             ],
         },
     ]);
