@@ -5,7 +5,8 @@ import useFetch from "react-fetch-hook";
 export function LoadItems({ category }) {
     const [quantities, setQuantities] = useState(Array(10).fill(0));
     const { isLoading, data, error } = useFetch(
-        `https://fakestoreapi.com/products/category/${category}`
+        `https://fakestoreapi.com/products/category/${category}`,
+        { mode: "cors" }
     );
 
     function handleQuantityChange(index, event) {
