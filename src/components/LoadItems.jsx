@@ -1,10 +1,19 @@
 import PropTypes from "prop-types";
+import { useState } from "react";
 import useFetch from "react-fetch-hook";
 
 export function LoadItems({ category }) {
+    const [quantities, setQuantities] = useState(Array(10).fill(0));
     const { isLoading, data, error } = useFetch(
         `https://fakestoreapi.com/products/category/${category}`
     );
+
+    function handleQuantityChange(index, event) {
+        let quantitiesCopy = JSON.parse(JSON.stringify(quantities));
+        quantitiesCopy[index] = parseInt(event.target.value);
+        setQuantities(quantitiesCopy);
+    }
+
     return (
         <>
             {isLoading && (
@@ -17,9 +26,9 @@ export function LoadItems({ category }) {
                     <div>{`There is a problem fetching the post data - ${error}`}</div>
                 </div>
             )}
-            <ul className="grid gap-4 mt-8 sm:grid-cols-2 lg:grid-cols-4 p-2.5">
+            <ul className="grid gap-8 mt-8 sm:grid-cols-2 lg:grid-cols-4 p-2.5">
                 {data &&
-                    data.map((image) => {
+                    data.map((image, index) => {
                         return (
                             <div key={image.id}>
                                 <li>
@@ -53,6 +62,17 @@ export function LoadItems({ category }) {
                                             </p>
                                         </div>
                                     </a>
+                                    <input
+                                        className="focus:ring-blue-500 focus:border-blue-500 border-yellow-300"
+                                        type="number"
+                                        min={0}
+                                        max={10}
+                                        value={quantities[index]}
+                                        onChange={(event) => {
+                                            handleQuantityChange(index, event);
+                                        }}
+                                    />
+                                    <button>Add to Cart</button>
                                 </li>
                             </div>
                         );
