@@ -7,7 +7,6 @@ export function LoadItems({ category }) {
     );
     return (
         <>
-            {console.log(isLoading)}
             {isLoading && (
                 <div className="h-full flex justify-center items-center">
                     <div>Loading...</div>
