@@ -13,7 +13,6 @@ export function LoadItems({ category, handleAddToCart }) {
     function handleQuantityChange(index, event) {
         let quantitiesCopy = JSON.parse(JSON.stringify(quantities));
         quantitiesCopy[index] = sanitizeInput(parseInt(event.target.value));
-        console.log("quantity:", quantitiesCopy[index]);
         setQuantities(quantitiesCopy);
     }
     function sanitizeInput(inputValue) {
@@ -29,6 +28,11 @@ export function LoadItems({ category, handleAddToCart }) {
         return 0;
     }
 
+    function resetQuantityCounter(index) {
+        let quantitiesCopy = JSON.parse(JSON.stringify(quantities));
+        quantitiesCopy[index] = 0;
+        setQuantities(quantitiesCopy);
+    }
     return (
         <>
             {isLoading && (
@@ -89,10 +93,13 @@ export function LoadItems({ category, handleAddToCart }) {
                                     />
                                     <button
                                         onClick={() => {
-                                            handleAddToCart(
-                                                product,
-                                                quantities[index]
-                                            );
+                                            if (quantities[index]) {
+                                                handleAddToCart(
+                                                    product,
+                                                    quantities[index]
+                                                );
+                                            }
+                                            resetQuantityCounter(index);
                                         }}
                                     >
                                         Add to Cart
