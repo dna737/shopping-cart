@@ -15,10 +15,22 @@ export function LoadItems({ category, handleAddToCart }) {
     );
 
     function handleQuantityChange(index, event) {
-        console.log("called the method!");
         let quantitiesCopy = JSON.parse(JSON.stringify(quantities));
-        quantitiesCopy[index] = parseInt(event.target.value);
+        quantitiesCopy[index] = sanitizeInput(parseInt(event.target.value));
+        console.log("quantity:", quantitiesCopy[index]);
         setQuantities(quantitiesCopy);
+    }
+    function sanitizeInput(inputValue) {
+        if (inputValue) {
+            if (inputValue < 0) {
+                return 0;
+            }
+            if (inputValue > 10) {
+                return 10;
+            }
+            return inputValue;
+        }
+        return 0;
     }
 
     return (
