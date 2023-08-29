@@ -1,8 +1,13 @@
+/* eslint-disable react/prop-types */
 import PropTypes from "prop-types";
 import { useState } from "react";
 import useFetch from "react-fetch-hook";
 
-export function LoadItems({ category }) {
+export function LoadItems({ category, handleAddToCart }) {
+    console.log(
+        "🚀 ~ file: LoadItems.jsx:7 ~ LoadItems ~ handleAddToCart :",
+        typeof handleAddToCart
+    );
     const [quantities, setQuantities] = useState(Array(10).fill(0));
     const { isLoading, data, error } = useFetch(
         `https://fakestoreapi.com/products/category/${category}`,
@@ -10,6 +15,7 @@ export function LoadItems({ category }) {
     );
 
     function handleQuantityChange(index, event) {
+        console.log("called the method!");
         let quantitiesCopy = JSON.parse(JSON.stringify(quantities));
         quantitiesCopy[index] = parseInt(event.target.value);
         setQuantities(quantitiesCopy);
@@ -29,16 +35,16 @@ export function LoadItems({ category }) {
             )}
             <ul className="grid gap-8 mt-8 sm:grid-cols-2 lg:grid-cols-4 p-2.5">
                 {data &&
-                    data.map((image, index) => {
+                    data.map((product, index) => {
                         return (
-                            <div key={image.id}>
+                            <div key={product.id}>
                                 <li>
                                     <a
-                                        href={image.image}
+                                        href={product.image}
                                         className="flex justify-center flex-col items-center block overflow-hidden group"
                                     >
                                         <img
-                                            src={image.image}
+                                            src={product.image}
                                             alt=""
                                             className="w-full object-cover transition duration-500 group-hover:scale-105 "
                                             style={{
@@ -49,7 +55,7 @@ export function LoadItems({ category }) {
                                         />
                                         <div className="relative pt-3 bg-white">
                                             <h3 className="text-xs text-gray-700 group-hover:underline group-hover:underline-offset-4">
-                                                {image.title}
+                                                {product.title}
                                             </h3>
                                             <p className="mt-2">
                                                 <span className="sr-only">
@@ -58,7 +64,7 @@ export function LoadItems({ category }) {
                                                 </span>
                                                 <span className="tracking-wider text-gray-900">
                                                     {" "}
-                                                    ${image.price}
+                                                    ${product.price}
                                                 </span>
                                             </p>
                                         </div>
@@ -73,7 +79,9 @@ export function LoadItems({ category }) {
                                             handleQuantityChange(index, event);
                                         }}
                                     />
-                                    <button>Add to Cart</button>
+                                    <button onClick={handleAddToCart}>
+                                        Add to Cart
+                                    </button>
                                 </li>
                             </div>
                         );
@@ -85,4 +93,5 @@ export function LoadItems({ category }) {
 
 LoadItems.propTypes = {
     category: PropTypes.string,
+    cartFunction: PropTypes.func,
 };

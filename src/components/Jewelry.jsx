@@ -1,4 +1,9 @@
 import { LoadItems } from "./LoadItems";
-export default function Jewelry() {
-    return <LoadItems category={"jewelery"} />;
+import PropTypes from "prop-types";
+export default function Jewelry({ handleAction }) {
+    return <LoadItems category={"jewelery"} handleAction={handleAction} />;
 }
+
+Jewelry.propTypes = {
+    handleAction: PropTypes.func,
+};
