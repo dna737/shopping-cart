@@ -4,10 +4,9 @@ import PropTypes from "prop-types";
 export default function MClothing() {
     const [cart, setCart] = useOutletContext();
 
-    function handleAddToCart() {
-        console.log("works?");
+    function handleAddToCart(product, quantity) {
         let cartCopy = JSON.parse(JSON.stringify(cart));
-        cartCopy.push("something");
+        cartCopy.push({ product: product, quantity: quantity });
         setCart(cartCopy);
     }
     return (
