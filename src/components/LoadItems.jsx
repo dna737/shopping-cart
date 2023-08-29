@@ -4,10 +4,6 @@ import { useState } from "react";
 import useFetch from "react-fetch-hook";
 
 export function LoadItems({ category, handleAddToCart }) {
-    console.log(
-        "🚀 ~ file: LoadItems.jsx:7 ~ LoadItems ~ handleAddToCart :",
-        typeof handleAddToCart
-    );
     const [quantities, setQuantities] = useState(Array(10).fill(0));
     const { isLoading, data, error } = useFetch(
         `https://fakestoreapi.com/products/category/${category}`,
@@ -91,7 +87,14 @@ export function LoadItems({ category, handleAddToCart }) {
                                             handleQuantityChange(index, event);
                                         }}
                                     />
-                                    <button onClick={handleAddToCart}>
+                                    <button
+                                        onClick={() => {
+                                            handleAddToCart(
+                                                product,
+                                                quantities[index]
+                                            );
+                                        }}
+                                    >
                                         Add to Cart
                                     </button>
                                 </li>
