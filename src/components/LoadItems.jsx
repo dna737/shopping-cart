@@ -53,7 +53,7 @@ export function LoadItems({ category, handleAddToCart }) {
                                 <li>
                                     <a
                                         href={product.image}
-                                        className="flex justify-center flex-col items-center block overflow-hidden group"
+                                        className="flex justify-center h-[280px] w-[350px] flex-col items-center block overflow-hidden group"
                                     >
                                         <img
                                             src={product.image}
@@ -101,6 +101,7 @@ export function LoadItems({ category, handleAddToCart }) {
                                             }
                                             resetQuantityCounter(index);
                                         }}
+                                        className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded"
                                     >
                                         Add to Cart
                                     </button>
