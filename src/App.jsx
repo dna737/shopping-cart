@@ -16,11 +16,13 @@ function App() {
         console.log("hi there");
         return "hi there";
     }
-
+    let component = <MClothing />;
+    console.log("this:", window.location.pathname);
+    // console.log("outlet is instance of cart:", outlet.class() === Cart);
     return (
         <>
             <Navbar />
-            {outlet && outlet instanceof Cart ? (
+            {outlet && window.location.pathname.includes("cart") ? (
                 <Outlet cart={cart} handleAddToCart={handleAddToCart} />
             ) : (
                 <Outlet context={[cart, setCart]} />
