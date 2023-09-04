@@ -5,7 +5,7 @@ import PropTypes from "prop-types";
 export default function Electronics() {
     const [cart, setCart] = useOutletContext();
 
-    function handleAddToCart(product, quantity) {
+    function handleAddToCart(product, quantity, image) {
         let oldProductIndex = cart.findIndex(
             (item) => item.product.id === product.id
         );
@@ -18,8 +18,11 @@ export default function Electronics() {
             );
         } else {
             // this means that the product is a new addition to the cart.
-            // cartCopy =
-            cartCopy.push({ product: product, quantity: quantity });
+            cartCopy.push({
+                product: product,
+                quantity: quantity,
+                image: image,
+            });
         }
         setCart(cartCopy);
     }

@@ -96,7 +96,8 @@ export function LoadItems({ category, handleAddToCart }) {
                                             if (quantities[index]) {
                                                 handleAddToCart(
                                                     product,
-                                                    quantities[index]
+                                                    quantities[index],
+                                                    product.image
                                                 );
                                             }
                                             resetQuantityCounter(index);
