@@ -1,4 +1,5 @@
 /* eslint-disable react/prop-types */
+import { v4 as uuidv4 } from "uuid";
 import PropTypes from "prop-types";
 import { useState } from "react";
 import useFetch from "react-fetch-hook";
@@ -49,7 +50,7 @@ export function LoadItems({ category, handleAddToCart }) {
                 {data &&
                     data.map((product, index) => {
                         return (
-                            <div key={product.id}>
+                            <div key={uuidv4()}>
                                 <li>
                                     <a
                                         href={product.image}
@@ -66,7 +67,7 @@ export function LoadItems({ category, handleAddToCart }) {
                                             }}
                                         />
                                         <div className="relative pt-3 bg-white">
-                                            <h3 className="text-xs text-gray-700 group-hover:underline group-hover:underline-offset-4">
+                                            <h3 className="break-words text-xs text-gray-700 group-hover:underline group-hover:underline-offset-4">
                                                 {product.title}
                                             </h3>
                                             <p className="mt-2">

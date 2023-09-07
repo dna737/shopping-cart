@@ -1,3 +1,4 @@
+import { v4 as uuidv4 } from "uuid";
 import { useOutletContext } from "react-router-dom";
 
 /* eslint-disable react/prop-types */
@@ -24,7 +25,7 @@ export default function Cart() {
                     {cart.map(
                         (product, index) =>
                             product.quantity > 0 && (
-                                <li key={product.id}>
+                                <li key={uuidv4()}>
                                     <a
                                         href={product.image}
                                         className="flex justify-center flex-col items-center block overflow-hidden group"
