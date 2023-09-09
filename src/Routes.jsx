@@ -1,29 +1,8 @@
-import { createBrowserRouter, RouterProvider } from "react-router-dom";
-import App from "./App";
-import Home from "./components/Home";
-import Electronics from "./components/Electronics";
-import Jewelry from "./components/Jewelry";
-import MClothing from "./components/MClothing";
-import Cart from "./components/Cart";
-import WClothing from "./components/WClothing";
-
+import { RouterProvider, createBrowserRouter } from "react-router-dom";
+import { routesConfig } from "./routesConfig";
 const Router = () => {
-    const router = createBrowserRouter([
-        {
-            path: "/",
-            element: <App />,
-            children: [
-                { index: true, element: <Home /> },
-                { path: "electronics", element: <Electronics /> },
-                { path: "jewelry", element: <Jewelry /> },
-                { path: "m-clothing", element: <MClothing /> },
-                { path: "w-clothing", element: <WClothing /> },
-                { path: "cart", element: <Cart /> },
-            ],
-        },
-    ]);
-
-    return <RouterProvider router={router} />;
+    const routes = createBrowserRouter(routesConfig);
+    return <RouterProvider router={routes} />;
 };
 
 export { Router };
