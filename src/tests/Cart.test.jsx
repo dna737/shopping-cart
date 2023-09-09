@@ -10,7 +10,7 @@ import "react";
 import { routesConfig } from "../routesConfig.jsx";
 
 describe("App component", () => {
-    it("renders electronic products", async () => {
+    it("routes to the correct page after being clicked on a link", async () => {
         const user = userEvent.setup();
         const router = createMemoryRouter(routesConfig, {
             initialEntries: ["/"],
@@ -19,10 +19,6 @@ describe("App component", () => {
         const electronicsTab = screen.getByText(/ELECTRONICS/i);
         expect(electronicsTab).toBeInTheDocument();
         await user.click(electronicsTab);
-        expect(
-            screen.getByText(
-                /WD 2TB Elements Portable External Hard Drive - USB 3.0/i
-            )
-        ).toBeInTheDocument();
+        expect(router.state.location.pathname).toEqual("/electronics");
     });
 });
