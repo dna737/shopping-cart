@@ -10,9 +10,6 @@ describe("App component", () => {
                 <App />
             </BrowserRouter>
         );
-        expect(
-            //use getByText
-            screen.getByText("FAKE_MRKT")
-        ).toBeInTheDocument();
+        expect(screen.getByText("FAKE_MRKT")).toBeInTheDocument();
     });
 });
