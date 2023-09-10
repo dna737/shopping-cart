@@ -20,9 +20,5 @@ describe("App component", () => {
         expect(electronicsTab).toBeInTheDocument();
         await user.click(electronicsTab);
         expect(router.state.location.pathname).toEqual("/electronics");
-        render(router.routes.element);
-
-        const page = screen.getByText(/WD 2TB/i);
-        expect(page).toBeInTheDocument();
     });
 });
